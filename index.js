@@ -48,6 +48,8 @@ class Menu {
                 case '4':
                     this.displaySeries();
                     break;
+                    case '5':
+                        this.deleteAll();
                 default:
                     selection = '0';
             }
@@ -63,6 +65,7 @@ class Menu {
         2) view series
         3) delete series
         4) display all series
+        5) delete all series
         `)
     }
 
@@ -78,9 +81,9 @@ class Menu {
     displaySeries() {
         let seriesString = '';
         for (let i = 0; i < this.series.length; i++) {
-            teamString += i + ') '+ this.series[i].name + '\n';
+            seriesString += i + ') '+ this.series[i].name + '\n';
         }
-        alert(teamString);
+        alert(seriesString);
     }
     createSeries() {
         let name = prompt('Enter name for new series');
@@ -122,7 +125,16 @@ class Menu {
             this.selectedSeries.splice(index, 1);
         }
     }
-   
+    deleteAll() {
+        const confirmation = prompt('Are you sure you want to delete all series? Enter "yes" to confirm or no to cancel');
+        if (confirmation.toLowerCase() === 'yes') {
+            this.series = []; // Clear all series
+            alert('All series have been deleted.');
+        } else  {
+            alert('Deletion canceled.');
+        } 
+        
+    }
 }
 let menus= new Menu();
 menus.start();
